@@ -20,7 +20,7 @@ A modern travel planning web application that helps users plan trips, compare tr
 ## 📸 Preview
 
 <p align="center">
-  <img src="preview.png" alt="VOYAGE Preview" width="1000">
+  <img src="preview.jpeg" alt="VOYAGE Preview" width="1000">
 </p>
 
 
