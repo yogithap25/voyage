@@ -1,0 +1,72 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="safety-page">
+
+    <div class="planner-header">
+        <p class="planner-tag">Safety Hub</p>
+        <h1>Travel With Confidence</h1>
+        <p>
+            Emergency contacts, quick assistance and safety resources—
+            all in one place.
+        </p>
+    </div>
+
+    <div class="safety-grid">
+
+        <div class="safety-card">
+            <i class="fa-solid fa-shield-heart"></i>
+
+            <h3>Women's Helpline</h3>
+
+            <p>1091</p>
+        </div>
+
+        <div class="safety-card">
+            <i class="fa-solid fa-user-shield"></i>
+
+            <h3>Police</h3>
+
+            <p>100</p>
+        </div>
+
+        <div class="safety-card">
+            <i class="fa-solid fa-truck-medical"></i>
+
+            <h3>Ambulance</h3>
+
+            <p>102 / 108</p>
+        </div>
+
+        <div class="safety-card">
+            <i class="fa-solid fa-hands-holding-circle"></i>
+
+            <h3>National Commission</h3>
+
+            <p>7827170170</p>
+        </div>
+
+    </div>
+
+    <div class="sos-card">
+
+        <div class="sos-icon">
+            <i class="fa-brands fa-whatsapp"></i>
+        </div>
+
+        <h2>Emergency SOS</h2>
+
+        <p>
+            Share your live location instantly with a trusted contact
+            through WhatsApp.
+        </p>
+
+        <a id="sosButton" href="#" target="_blank" class="auth-btn">
+            Send WhatsApp Alert
+        </a>
+
+    </div>
+
+</section>
+{% endblock %}

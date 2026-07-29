@@ -1,0 +1,78 @@
+{% extends 'travel/base.html' %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-card booking-card">
+
+        <p class="auth-tag">Booking Details</p>
+
+        <h1>{{ hotel_name }}</h1>
+
+        <p class="auth-subtitle">
+            {{ city }}
+        </p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <div class="input-group">
+                <i class="fa-regular fa-user"></i>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-regular fa-envelope"></i>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-phone"></i>
+                <input
+                    type="tel"
+                    name="mobile"
+                    placeholder="Mobile Number"
+                    required>
+            </div>
+
+            <div class="booking-grid">
+
+                <div class="input-group">
+                    <i class="fa-regular fa-calendar"></i>
+                    <input
+                        type="date"
+                        name="checkin"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-regular fa-calendar"></i>
+                    <input
+                        type="date"
+                        name="checkout"
+                        required>
+                </div>
+
+            </div>
+
+            <button class="auth-btn">
+                Confirm Booking
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

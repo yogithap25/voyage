@@ -1,0 +1,10 @@
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# Django database
+mysite/db.sqlite3
+
+mysite/travel/static/images/
+mysite/travel/templates/travel/trip_planner/
+mysite/mysite/

@@ -1,0 +1,89 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+
+    <p class="hero-tag">
+        Travel, reimagined.
+    </p>
+
+    <h1>
+        Plan beautifully.<br>
+        Travel effortlessly.
+    </h1>
+
+    <p class="hero-description">
+        Organise trips, discover stays, manage expenses and explore destinations—
+        all in one elegant workspace.
+    </p>
+
+    <a href="{% url 'trip_planner' %}" class="hero-btn">
+        Start Planning
+        <i class="fas fa-arrow-right"></i>
+    </a>
+
+</section>
+
+
+<section class="features">
+
+    <a href="{% url 'trip_planner' %}" class="feature-card">
+        <i class="fa-solid fa-route"></i>
+        <h3>Journey Planner</h3>
+        <span>Plan your itinerary →</span>
+    </a>
+    
+    <a href="{% url 'hotel_booking' %}" class="feature-card">
+        <i class="fa-solid fa-hotel"></i>
+        <h3>Stay Finder</h3>
+        <span>Book hotels →</span>
+    </a>
+
+    <a href="{% url 'budget_split' %}" class="feature-card">
+        <i class="fa-solid fa-wallet"></i>
+        <h3>Expense Split</h3>
+        <span>Manage costs →</span>
+    </a>
+
+    <a href="{% url 'transport_booking' %}" class="feature-card">
+        <i class="fa-solid fa-train"></i>
+        <h3>Transit</h3>
+        <span>Travel smarter →</span>
+    </a>
+
+    <a href="{% url 'food_spots' %}" class="feature-card">
+        <i class="fa-solid fa-utensils"></i>
+        <h3>Local Eats</h3>
+        <span>Find food →</span>
+    </a>
+
+    <a href="{% url 'safety' %}" class="feature-card">
+        <i class="fa-solid fa-shield-heart"></i>
+        <h3>Safety Hub</h3>
+        <span>Travel safely →</span>
+    </a>
+
+</section>
+
+<script>
+    document.getElementById("tripPlannerCard").onclick = function() {
+        window.location.href = "{% url 'trip_planner' %}";
+    };
+    document.getElementById("transportBookingCard").onclick = function() {
+        window.location.href = "{% url 'transport_booking' %}";
+    };
+    document.getElementById("hotelBookingCard").onclick = function() {
+        window.location.href = "{% url 'hotel_booking' %}";
+    };
+    document.getElementById("foodSpotsCard").onclick = function() {
+        window.location.href = "{% url 'food_spots' %}";
+    };
+    document.getElementById("budgetSplitCard").onclick = function() {
+        window.location.href = "{% url 'budget_split' %}";
+    };
+    document.getElementById("safetyCard").onclick = function() {
+        window.location.href = "{% url 'safety' %}";
+    };
+</script>
+{% endblock %}

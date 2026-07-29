@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TOURIFY Travel Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #004d40;
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 960px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-item {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: #004d40;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .dashboard-item i {
+            font-size: 2.5rem;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-item span {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>TOURIFY Travel Dashboard</header>
+
+    <div class="dashboard-grid">
+        <a href="{% url 'trip_planner' %}" class="dashboard-item" aria-label="Trip Planner">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Trip Planner</span>
+        </a>
+        <a href="{% url 'budget_split' %}" class="dashboard-item" aria-label="Budget Split">
+            <i class="fas fa-wallet"></i>
+            <span>Budget Split</span>
+        </a>
+        <a href="{% url 'hotel_booking' %}" class="dashboard-item" aria-label="Hotel Booking">
+            <i class="fas fa-hotel"></i>
+            <span>Hotel Booking</span>
+        </a>
+        <a href="{% url 'transport_booking' %}" class="dashboard-item" aria-label="Transport Booking">
+            <i class="fas fa-bus"></i>
+            <span>Transport Booking</span>
+        </a>
+        <a href="{% url 'food_spots' %}" class="dashboard-item" aria-label="Local Food Spots">
+            <i class="fas fa-utensils"></i>
+            <span>Local Food Spots</span>
+        </a>
+        <a href="{% url 'women_safety' %}" class="dashboard-item" aria-label="Safety Alerts">
+            <i class="fas fa-shield-alt"></i>
+            <span>Safety Alerts</span>
+        </a>
+    </div>
+</body>
+</html>
+
+

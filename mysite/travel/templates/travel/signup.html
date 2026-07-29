@@ -1,0 +1,65 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <p class="auth-tag">Start your journey</p>
+
+        <h1>Create your <span>VOYAGE</span> account</h1>
+
+        <p class="auth-subtitle">
+            Join VOYAGE and begin planning unforgettable adventures.
+        </p>
+
+        <form method="post" action="{% url 'signup' %}">
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="input-group">
+                <i class="fa-regular fa-user"></i>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-regular fa-envelope"></i>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email address"
+                    required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required>
+            </div>
+
+            <button type="submit" class="auth-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <p class="auth-footer">
+            Already have an account?
+            <a href="{% url 'login' %}">
+                Sign In
+            </a>
+        </p>
+
+    </div>
+
+</section>
+{% endblock %}

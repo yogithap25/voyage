@@ -1,0 +1,36 @@
+{% extends 'travel/base.html' %}
+
+{% block content %}
+
+<section class="success-page">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <h1>Booking Confirmed!</h1>
+
+        <p>
+            Your hotel has been successfully reserved.
+            A confirmation email has been sent with your booking details.
+        </p>
+
+        <div class="success-actions">
+
+            <a href="{% url 'hotel_booking' %}" class="back-btn">
+                Browse More Hotels
+            </a>
+
+            <a href="{% url 'home' %}" class="signup-btn">
+                Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

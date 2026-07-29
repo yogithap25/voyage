@@ -1,0 +1,63 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="food-page">
+
+    <div class="planner-header">
+        <p class="planner-tag">Local Eats</p>
+        <h1>Discover Great Food Nearby</h1>
+        <p>
+            Explore restaurants around your current location with one click.
+        </p>
+    </div>
+
+    <div class="food-card">
+
+        <img src="{% static 'travel/images/google-maps.png' %}"
+             alt="Google Maps"
+             class="maps-logo">
+
+        <h2>Find Restaurants Near You</h2>
+
+        <p class="food-desc">
+            We'll use your current location to open Google Maps
+            with nearby restaurants already searched.
+        </p>
+
+        <button onclick="findRestaurants()" class="auth-btn">
+            <i class="fa-solid fa-location-dot"></i>
+            Find Restaurants
+        </button>
+
+        <p id="location-error" class="error-msg"></p>
+
+    </div>
+
+</section>
+
+<script>
+function findRestaurants() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const mapsUrl = `https://www.google.com/maps/search/restaurants/@${lat},${lng},15z`;
+                window.open(mapsUrl, '_blank');
+            },
+            function() {
+                document.getElementById("location-error").textContent =
+                "Please allow location access to continue.";
+            }
+        );
+    } else {
+        document.getElementById("location-error").textContent =
+        "Geolocation is not supported by your browser.";
+    }
+}
+</script>
+{% endblock %}
+
+
+

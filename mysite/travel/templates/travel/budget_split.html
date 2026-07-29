@@ -1,0 +1,173 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="budget">
+
+    <div class="planner-header">
+        <p class="planner-tag">Expense Manager</p>
+        <h1>Split Trip Expenses</h1>
+        <p>
+            Track spending, calculate everyone's share,
+            and settle balances effortlessly.
+        </p>
+    </div>
+
+    <div class="budget-card">
+
+        {% if error %}
+            <p class="error-msg">{{ error }}</p>
+        {% endif %}
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {% if not submitted %}
+
+                <div class="input-group">
+                    <i class="fa-solid fa-users"></i>
+
+                    <input
+                        type="number"
+                        id="num_members"
+                        name="num_members"
+                        min="2"
+                        placeholder="Number of Members"
+                        required>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="auth-btn"
+                    onclick="generateFields()">
+
+                    Create Group
+
+                </button>
+
+                <div id="members-section"></div>
+
+                <div id="submit-section" style="display:none; margin-top:25px;">
+
+                    <button
+                        type="submit"
+                        class="auth-btn">
+
+                        Calculate Split
+
+                    </button>
+
+                </div>
+
+            {% endif %}
+
+        </form>
+
+        {% if submitted %}
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+                <span>Total Spent</span>
+                <h2>₹{{ total }}</h2>
+            </div>
+
+            <div class="summary-card">
+                <span>Per Person</span>
+                <h2>₹{{ share }}</h2>
+            </div>
+
+        </div>
+
+        <div class="results">
+
+            <h3>Member Contributions</h3>
+
+            <ul>
+
+                {% for name, expense, balance in result %}
+
+                <li>
+
+                    <strong>{{ name }}</strong>
+
+                    <span>₹{{ expense }}</span>
+
+                    <span>Balance: ₹{{ balance }}</span>
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        <div class="results">
+
+            <h3>Settlement</h3>
+
+            {% if owe %}
+
+            <ul>
+
+                {% for debtor, creditor, amount in owe %}
+
+                <li>
+
+                    {{ debtor }}
+
+                    →
+
+                    {{ creditor }}
+
+                    <strong>₹{{ amount }}</strong>
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p>Everyone is settled 🎉</p>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+<script>
+function generateFields() {
+    const num = document.getElementById('num_members').value;
+    const section = document.getElementById('members-section');
+
+    section.innerHTML = "";
+
+    for (let i = 0; i < num; i++) {
+        section.innerHTML += `
+            <div class="member-input">
+                <div class="input-group">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" name="names[]" placeholder="Member ${i + 1} Name" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                    <input type="number" name="expenses[]" placeholder="Amount Spent" step="0.01" required>
+                </div>
+            </div>
+        `;
+    }
+
+    document.getElementById('submit-section').style.display = "block";
+}
+</script>
+{% endblock %}

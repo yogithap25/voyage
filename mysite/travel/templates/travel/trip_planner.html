@@ -1,0 +1,179 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="planner">
+
+    <div class="planner-header">
+
+        <p class="planner-tag">
+            Journey Planner
+        </p>
+
+        <h1>
+            Design your next adventure.
+        </h1>
+
+        <p>
+            Tell us where you're going and we'll build your itinerary,
+            estimate expenses, check the weather and prepare your checklist.
+        </p>
+
+    </div>
+
+    <div class="planner-card">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="planner-grid">
+
+                <div class="field">
+
+                    <label>Source</label>
+
+                    <input
+                        type="text"
+                        name="source"
+                        placeholder="Hyderabad"
+                        required>
+
+                </div>
+
+                <div class="field">
+
+                    <label>Destination</label>
+
+                    <input
+                        type="text"
+                        name="destination"
+                        placeholder="Goa"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="field">
+
+                <label>Trip Duration</label>
+                <input
+                type="number"
+                name="days"
+                min="1"
+                max="25"
+                placeholder="4"
+                required>
+        <span class="suffix">days</span>
+    </div>
+
+            <button class="planner-btn">
+                Generate Journey
+            </button>
+
+        </form>
+
+    </div>
+
+{% if itinerary %}
+
+<div class="results">
+
+    <div class="result-card">
+
+        <h2>🗓 Itinerary</h2>
+
+        {% for day, plan in itinerary.items %}
+
+            <div class="day-card">
+
+                <strong>Day {{ day }}</strong>
+
+                <p>{{ plan }}</p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h2>💰 Estimated Cost</h2>
+
+        <h3>₹{{ cost }}</h3>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h2>🌤 Weather</h2>
+
+        <ul>
+
+        {% for day, condition in weather.items %}
+
+            <li>
+
+                <strong>Day {{ day }}</strong>
+
+                {{ condition }}
+
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h2>🧳 Packing Checklist</h2>
+
+        <div class="check-grid">
+
+        {% for item in checklist %}
+
+            <label class="check-item">
+
+                <input type="checkbox">
+
+                {{ item }}
+
+            </label>
+
+        {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <h2>⏰ Reminders</h2>
+
+        <ul>
+
+        {% for note in reminders %}
+
+            <li>{{ note }}</li>
+
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+</section>
+</div>
+{% endblock %}

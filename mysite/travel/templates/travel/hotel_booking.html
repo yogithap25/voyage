@@ -1,0 +1,95 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hotel-page">
+
+    <div class="hotel-header">
+
+        <p class="planner-tag">Stay Finder</p>
+
+        <h1>Find your perfect stay.</h1>
+
+        <p>
+            Browse highly rated hotels and book your stay in just a few clicks.
+        </p>
+
+    </div>
+
+    <div class="hotel-filter">
+
+        <form method="get">
+
+            <label for="city">Destination</label>
+
+            <select name="city" id="city" onchange="this.form.submit()">
+
+                {% for city in cities %}
+
+                <option value="{{ city }}"
+                    {% if city == selected_city %}selected{% endif %}>
+
+                    {{ city }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </form>
+
+    </div>
+
+
+    <div class="hotel-grid">
+
+        {% for hotel in hotels %}
+
+        <div class="hotel-card">
+
+            <div class="hotel-top">
+
+                <span class="hotel-rating">
+                    ⭐ {{ hotel.rating }}
+                </span>
+
+                <span class="hotel-price">
+                    {{ hotel.price }}
+                </span>
+
+            </div>
+
+            <h2>{{ hotel.name }}</h2>
+
+            <p class="hotel-location">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                {{ hotel.location }}
+
+            </p>
+
+            <a
+                href="{% url 'hotel_details' selected_city hotel.name|urlencode %}"
+                class="hotel-btn">
+
+                View Details →
+
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <p>No hotels found.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+{% endblock %}
+
+
+

@@ -1,0 +1,94 @@
+{% extends 'travel/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="planner">
+
+    <div class="planner-header">
+        <p class="planner-tag">Transport</p>
+        <h1>Find the Best Way to Travel</h1>
+        <p>Compare estimated fares across different transport options.</p>
+    </div>
+
+    <div class="planner-card">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="input-group">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" name="source" placeholder="Source" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-flag-checkered"></i>
+                <input type="text" name="destination" placeholder="Destination" required>
+            </div>
+
+            <button class="auth-btn" type="submit">
+                Check Options
+            </button>
+
+        </form>
+
+    </div>
+    {% if cost_data %}
+    <div class="transport-grid">
+        <div class="transport-card">
+            <i class="fa-solid fa-bus"></i>
+            <h3>Bus</h3>
+            <p class="price">₹{{ cost_data.bus }}</p>
+            <div class="transport-info">
+                <span><i class="fa-regular fa-clock"></i> 8–10 hrs</span>
+                <span><i class="fa-solid fa-wallet"></i> Most Economical</span>
+                <span><i class="fa-solid fa-check"></i> Frequent Departures</span>
+            </div>
+            
+            <a href="https://www.redbus.in" target="_blank" class="hotel-btn">
+                Book on RedBus
+            </a>
+    </div>
+
+    <div class="transport-card">
+        <i class="fa-solid fa-train"></i>
+
+        <h3>Train</h3>
+
+        <p class="price">₹{{ cost_data.train }}</p>
+
+        <div class="transport-info">
+            <span><i class="fa-regular fa-clock"></i> 5–8 hrs</span>
+            <span><i class="fa-solid fa-star"></i> Best Value</span>
+            <span><i class="fa-solid fa-chair"></i> Comfortable Journey</span>
+        </div>
+
+        <a href="https://www.irctc.co.in" target="_blank" class="hotel-btn">
+            Book on IRCTC
+        </a>
+    </div>
+
+    <div class="transport-card">
+        <i class="fa-solid fa-plane"></i>
+
+        <h3>Flight</h3>
+
+        <p class="price">₹{{ cost_data.flight }}</p>
+
+        <div class="transport-info">
+            <span><i class="fa-regular fa-clock"></i> 1–2 hrs</span>
+            <span><i class="fa-solid fa-bolt"></i> Fastest Option</span>
+            <span><i class="fa-solid fa-suitcase"></i> Ideal for Long Trips</span>
+        </div>
+
+        <a href="https://www.makemytrip.com/flights/" target="_blank" class="hotel-btn">
+            Book on MakeMyTrip
+        </a>
+    </div>
+
+</div>
+
+{% endif %}
+
+</section>
+{% endblock %}

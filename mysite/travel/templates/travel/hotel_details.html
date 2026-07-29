@@ -1,0 +1,65 @@
+{% extends 'travel/base.html' %}
+
+{% block content %}
+<section class="hotel-details">
+    <div class="details-card">
+
+        <p class="planner-tag">Hotel Details</p>
+
+        <h1>{{ hotel.name }}</h1>
+
+        <div class="details-grid">
+
+            <div class="detail-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <span>Location</span>
+                    <p>{{ hotel.location }}</p>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fa-solid fa-city"></i>
+                <div>
+                    <span>City</span>
+                    <p>{{ city }}</p>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <div>
+                    <span>Price</span>
+                    <p>₹{{ hotel.price }}</p>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fa-solid fa-star"></i>
+                <div>
+                    <span>Rating</span>
+                    <p>{{ hotel.rating }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="details-actions">
+
+            <a href="{% url 'hotel_booking' %}" class="back-btn">
+                ← Back
+            </a>
+
+            <form action="{% url 'confirm_booking' city hotel.name %}" method="get">
+
+                <button type="submit" class="confirm-btn">
+                    Confirm Booking
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}

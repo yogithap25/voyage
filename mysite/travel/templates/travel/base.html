@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOYAGE</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'travel/css/voyage.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+        V O Y A G E
+    </a>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'trip_planner' %}">Planner</a>
+
+        <a href="{% url 'hotel_booking' %}">Hotels</a>
+
+        <a href="{% url 'transport_booking' %}">Transport</a>
+
+        <a href="{% url 'safety' %}">Safety</a>
+    </div>
+
+    <div class="nav-buttons">
+
+        {% if user.is_authenticated %}
+
+            <form method="post"
+                  action="{% url 'logout' %}">
+                {% csrf_token %}
+
+                <button class="logout-btn">
+                    Logout
+                </button>
+
+            </form>
+
+        {% else %}
+
+            <a href="{% url 'login' %}"
+               class="login-btn">
+                Login
+            </a>
+
+            <a href="{% url 'signup' %}"
+               class="signup-btn">
+                Sign Up
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<main>
+
+{% block content %}
+{% endblock %}
+
+</main>
+
+</body>
+</html>
